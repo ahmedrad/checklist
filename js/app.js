@@ -10,26 +10,23 @@ var checkBoxActions = document.querySelectorAll('input[type="checkbox"]');
 
 
 
-var addTask = function(newTaskTitle) {
+var addTask = function() {
   console.log('adding task...')
 };
 
-var editTask = function(editTaskAction) {
-  console.log('editing task...')
+var editTask = function() {
+  console.log('editing task...');
+  console.log(this);
 };
 
-var deleteTask = function(deleteTaskAction) {
+var deleteTask = function() {
   console.log('deleting task...')
 }
 
-var completeTask = function(checkBoxAction) {
-  console.log('completing task...')
+var checkBoxHandler = function() {
+  console.log('handle checkbox');
+  console.log(this);
 }
-
-
-var incompleteTask = function(checkBoxAction) {
-  console.log('incompleting task...')
-};
 
 
 console.log(incompleteTasksHolder);
@@ -38,6 +35,36 @@ console.log(addTaskAction);
 console.log(editTaskActions);
 console.log(deleteTaskActions);
 console.log(checkBoxActions);
+
+addTaskAction.onclick = addTask;
+
+// function bindEditAction(element, index, array) {
+//   element.onclick = editTask(element);
+// }
+
+
+// function bindDeleteAction(element, index, array) {
+//   element.onclick = deleteTask(element);
+// }
+
+// Note ellision, there is no member at 2 so it isn't visited
+for(i=0; i<editTaskActions.length;i++)
+{
+  editTaskActions[i].onclick = editTask;
+}
+
+for(i=0; i<deleteTaskActions.length;i++)
+{
+  deleteTaskActions[i].onclick = deleteTask;
+}
+
+for(i=0; i<deleteTaskActions.length;i++)
+{
+  checkBoxActions[i].onchange = checkBoxHandler;
+}
+
+
+
 
 
 
