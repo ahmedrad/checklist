@@ -18,7 +18,20 @@ var addTask = function() {
 
 var editTask = function() {
   console.log('editing task...');
-  console.log(this);
+  var task = this.parentNode;
+  var currentClass = task.className;
+  var input = task.querySelector('input[type="text"]')
+  var label = task.getElementsByTagName('label')[0]
+  if (currentClass === 'editMode')
+    {
+      task.className = '';
+      label.innerHTML = input.value;
+    }
+  else
+    {
+      task.className = 'editMode';
+      input.value = label.innerHTML;
+    }
 };
 
 var deleteTask = function() {
@@ -29,6 +42,7 @@ var deleteTask = function() {
   console.log(taskParent);
   taskParent.removeChild(task);
   wireActions();
+  console.log('task deleted')
 }
 
 var checkBoxHandler = function() {
@@ -48,17 +62,6 @@ var checkBoxHandler = function() {
 
 
 addTaskAction.onclick = addTask;
-
-// function bindEditAction(element, index, array) {
-//   element.onclick = editTask(element);
-// }
-
-
-// function bindDeleteAction(element, index, array) {
-//   element.onclick = deleteTask(element);
-// }
-
-// Note ellision, there is no member at 2 so it isn't visited
  
 var wireActions = function() {
 
